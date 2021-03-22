@@ -1,39 +1,41 @@
 <template>
   <div id="container">
     <Suspense>
-      <async-map />
+      <template #default>
+        <!-- main async content goes here -->
+        <map-view />
+      </template>
+
+      <template #fallback>
+        <!-- fallback content goes here while component is loading -->
+        <h3 class="loader">Loading...</h3>
+      </template>
+
     </Suspense>
   </div>
 </template>
 
 <script>
-import { defineComponent, defineAsyncComponent } from 'vue'
-import Loader from './components/Loader'
+import MapView from '@/views/MapView'
+import { defineComponent } from 'vue'
 
-const AsyncMap = defineAsyncComponent({
-  loader: ()=> import('@/views/MapView'),
-  loadingComponent: Loader,
-  // delay: 100,
-  suspensible: false
-})
 export default defineComponent({
 
   components: {
-    AsyncMap
-  },
-
-  mounted(){
-    console.log('mounted app: ', this)
+    MapView
   }
-  
   
 });
 </script>
 
 <style scoped>
-#esri-map{
-  padding:0;
-  margin:0;
-  height:100%;
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
+
 </style>
