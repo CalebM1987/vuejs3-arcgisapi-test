@@ -11,6 +11,7 @@
   "dependencies": {
     "@arcgis/core": "^4.18",
     "core-js": "^3.8.1",
+    "esri-loader": "^3.0.0",
     "vue": "^3.0.4"
   },
   "devDependencies": {
